@@ -1,4 +1,4 @@
-xamples:
+Examples:
 Below are the CRUD (Create, Read, Update, Delete) operations and other operations defined in your Django Rest Framework (DRF) code. Each view or viewset is formatted as per Python and DRF conventions:
 
 ### `RestaurantViewSet`:
