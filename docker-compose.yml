@@ -1,0 +1,35 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: dbname  # replace 'dbname' with your database name
+      POSTGRES_USER: user  # replace 'user' with your database user
+      POSTGRES_PASSWORD: test
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    command: gunicorn restaurant.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - SECRET_KEY=your_secret_key  # replace with your secret key
+      - DEBUG=0  # set to 1 if you want debug mode
+      - DB_NAME=dbname  # replace 'dbname' with your database name
+      - DB_USER=user  # replace 'user' with your database user
+      - DB_PASS=test
+      - DB_SERVICE=db
+      - DB_PORT=5432
+
+volumes:
+  postgres_data:
