@@ -64,7 +64,7 @@ class MealViewSet(viewsets.ReadOnlyModelViewSet):
 
 ```
 
-### `CartViewSet`:
+### `CartViewSet`:CS425
 
 - **Read** Cart details: Custom `get_queryset` method.
 
